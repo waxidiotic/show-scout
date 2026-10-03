@@ -1,0 +1,167 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+ * Palette comes from the park itself:
+ *   monster  - the left-field wall
+ *   sox      - the red in the seats and the stitching
+ *   bulb     - the scoreboard lights
+ *   chalk    - painted foul lines and the page itself
+ */
+:root {
+  --monster: #1f4d36;
+  --monster-deep: #12301f;
+  --monster-mid: #2b6547;
+  --sox: #bd3039;
+  --navy: #0c2340;
+  --bulb: #f2c94c;
+  --chalk: #f4f3ec;
+  --paper: #fbfaf6;
+  --ink: #16241c;
+  --ink-soft: #55645b;
+  --rule: #d9d8cc;
+
+  --rarity-diamond: #4aa8dc;
+  --rarity-gold: #c99a1d;
+  --rarity-silver: #8d949c;
+  --rarity-bronze: #9a6a3a;
+  --rarity-common: #6f6a5a;
+
+  /* shadcn semantic tokens, mapped onto the palette */
+  --background: var(--chalk);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--monster);
+  --primary-foreground: #ffffff;
+  --secondary: #e7e6da;
+  --secondary-foreground: var(--ink);
+  --muted: #ecebe0;
+  --muted-foreground: var(--ink-soft);
+  --accent: #e2e8dc;
+  --accent-foreground: var(--monster-deep);
+  --destructive: var(--sox);
+  --border: var(--rule);
+  --input: #c9c8ba;
+  --ring: var(--sox);
+  --radius: 0.375rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-monster: var(--monster);
+  --color-monster-deep: var(--monster-deep);
+  --color-monster-mid: var(--monster-mid);
+  --color-sox: var(--sox);
+  --color-navy: var(--navy);
+  --color-bulb: var(--bulb);
+  --color-chalk: var(--chalk);
+  --color-paper: var(--paper);
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+
+  --font-display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    font-optical-sizing: auto;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--sox);
+    outline-offset: 2px;
+  }
+}
+
+/* Numbers and headings use the scoreboard face. */
+.font-display {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+
+.num {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: 0.01em;
+}
+
+/*
+ * The Green Monster: flat green with vertical panel seams.
+ * The seams are the only decoration on the page header.
+ */
+.wall {
+  background-color: var(--monster);
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 63px,
+    rgb(0 0 0 / 0.16) 63px,
+    rgb(0 0 0 / 0.16) 64px
+  );
+  color: #fff;
+}
+
+/* A hand-posted scoreboard tile. */
+.tile {
+  background: var(--monster-deep);
+  color: var(--bulb);
+  border: 2px solid #fff;
+  outline: 3px solid var(--monster-deep);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.5);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tile-flip {
+    animation: tile-flip 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+    transform-origin: 50% 0;
+  }
+}
+
+@keyframes tile-flip {
+  from {
+    transform: rotateX(-88deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
