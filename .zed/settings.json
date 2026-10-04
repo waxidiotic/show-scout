@@ -1,10 +1,41 @@
 {
+  "inlay_hints": {
+    "enabled": false
+  },
   "format_on_save": "on",
   "prettier": { "allowed": false },
   "lsp": {
     "biome": {
       "settings": {
         "require_config_file": true
+      }
+    },
+    "vtsls": {
+      "initialization_options": {
+        "typescript": {
+          "inlayHints": {
+            "parameterNames": { "enabled": "none" },
+            "parameterTypes": { "enabled": false },
+            "variableTypes": { "enabled": false },
+            "propertyDeclarationTypes": { "enabled": false },
+            "functionLikeReturnTypes": { "enabled": false },
+            "enumMemberValues": { "enabled": false }
+          }
+        }
+      }
+    },
+    "typescript-language-server": {
+      "initialization_options": {
+        "preferences": {
+          "includeInlayParameterNameHints": "none",
+          "includeInlayParameterNameHintsWhenArgumentMatchesName": false,
+          "includeInlayFunctionParameterTypeHints": false,
+          "includeInlayVariableTypeHints": false,
+          "includeInlayVariableTypeHintsWhenTypeMatchesName": false,
+          "includeInlayPropertyDeclarationTypeHints": false,
+          "includeInlayFunctionLikeReturnTypeHints": false,
+          "includeInlayEnumMemberValueHints": false
+        }
       }
     }
   },

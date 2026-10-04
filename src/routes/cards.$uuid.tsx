@@ -98,7 +98,7 @@ function CardPage() {
             />
           ) : (
             <div
-              className="aspect-[2/3] w-full max-w-60 rounded-lg border-4 bg-muted"
+              className="aspect-2/3 w-full max-w-60 rounded-lg border-4 bg-muted"
               style={{ borderColor: rarityVar(item.rarity) }}
             />
           )}
