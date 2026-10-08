@@ -8,7 +8,7 @@ export function ListingsTable({ listings }: { listings: Listing[] }) {
 
   return (
     <div className="overflow-x-auto rounded-lg border border-border bg-paper">
-      <table className="w-full min-w-[40rem] border-collapse text-left">
+      <table className="w-full min-w-160 border-collapse text-left">
         <caption className="sr-only">Market listings</caption>
         <thead>
           <tr className="wall font-display text-lg font-semibold tracking-wide">
@@ -32,7 +32,7 @@ export function ListingsTable({ listings }: { listings: Listing[] }) {
             <th
               scope="col"
               className="px-4 py-2.5 text-right"
-              title="Sell now price after the 10% market cut, minus the buy now price"
+              title="Buy now price after the 10% market cut, minus the sell now price"
             >
               Flip profit
             </th>

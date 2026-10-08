@@ -15,12 +15,15 @@ export function formatStubs(value: Price | undefined): string {
   return n === null ? "—" : n.toLocaleString("en-US")
 }
 
-/** Profit from buying at best_sell_price and relisting at best_buy_price, after the market cut. */
+/**
+ * Profit from a filled buy order at the sell now price (best_buy_price), relisted
+ * at the buy now price (best_sell_price), after the market cut
+ */
 export function flipProfit(buyNow: Price, sellNow: Price): number | null {
-  const buy = toNumber(buyNow)
-  const sell = toNumber(sellNow)
-  if (buy === null || sell === null) return null
-  return Math.floor(sell * (1 - MARKET_TAX)) - buy
+  const listAt = toNumber(buyNow)
+  const bidAt = toNumber(sellNow)
+  if (!listAt || !bidAt) return null
+  return Math.floor(listAt * (1 - MARKET_TAX)) - bidAt
 }
 
 export function rarityVar(rarity: string | undefined): string {
